@@ -1,14 +1,16 @@
 header {
-    padding: 20px 10%;
+    padding: 10px 10%;
     width: 100%;
     background-color: $accent;
+    position: fixed;
+    box-shadow: 1px 1px 2px $black;
     h1 {
         font-family: 'Shrikhand', serif;
         font-size: calc(5rem + 1vw);
-        text-shadow: -1px 1px 1px $secondary,
-                    -2px 2px 1px $secondary
+        text-shadow: 1px 1px 1px $secondary,
+                    2px 2px 1px $secondary
         ;
         color: $primary;
-        padding: 0;
+        margin: 0;
     }
 }

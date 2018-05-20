@@ -3,3 +3,16 @@ $white: #EFF9F9;
 $primary: #00447C;
 $secondary: #E85F5C;
 $accent: #EEC643;
+
+html {
+    font-size: 62.5%;
+    body{
+        background: $primary;
+        color: $black;
+        .wrapper {
+            width: 80%;
+            margin: 0 auto;
+            max-width: 1920px;
+        }
+    }
+}

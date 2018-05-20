@@ -1,0 +1,69 @@
+.list {
+    margin-top: 14rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;    
+    h2 {
+        font-family: 'Special Elite', serif;
+        border-bottom: 2px solid $secondary;
+        // background: $accent;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    .toRead, .finishedBooks {
+        padding: 2%;
+        background-color: $white;
+    }
+    li {
+        // border: 2px solid $secondary;
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-gap: 1rem;
+        padding: 1rem;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 1rem;
+        background: $accent;
+        h3 {
+            font-family: 'Special Elite', serif;
+            font-size: calc(1rem + 0.5vw);
+            text-transform: uppercase;
+            margin: 0;
+            background: $accent;
+        }
+        h4 {
+            font-size: calc(0.5rem + 0.5vw);
+            background: $accent;
+            margin: 0.5rem 0;
+        }
+    }
+    .buttons {
+        display: flex;
+        justify-content: space-around;
+    }
+    button {
+        font-family: 'Special Elite', serif;
+        font-size: calc(0.5rem + 0.5vw);
+        color: $accent;
+        border: none;
+        border-radius: 0;
+        padding: 0.5rem;
+        transition: all 0.5s ease;
+    }
+    .removeBtn {
+        background: $secondary;
+    }
+    .removeBtn:hover {
+        background: $accent;
+        color: $secondary;
+    }
+    .finishedBtn {
+        background: $primary;
+    }
+    .finishedBtn:hover {
+        background: $accent;
+        color: $primary;
+    }
+}   
