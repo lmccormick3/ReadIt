@@ -6,7 +6,6 @@
     h2 {
         font-family: 'Special Elite', serif;
         border-bottom: 2px solid $secondary;
-        // background: $accent;
     }
     ul {
         list-style: none;
@@ -17,25 +16,22 @@
         background-color: $white;
     }
     li {
-        // border: 2px solid $secondary;
+        text-align: center;
+        background: $accent;
+        margin-bottom: 1rem;
         display: grid;
         grid-template-rows: 1fr;
         grid-gap: 1rem;
         padding: 1rem;
         align-items: center;
-        text-align: center;
-        margin-bottom: 1rem;
-        background: $accent;
         h3 {
             font-family: 'Special Elite', serif;
             font-size: calc(1rem + 0.5vw);
             text-transform: uppercase;
             margin: 0;
-            background: $accent;
         }
         h4 {
             font-size: calc(0.5rem + 0.5vw);
-            background: $accent;
             margin: 0.5rem 0;
         }
     }
@@ -67,3 +63,21 @@
         color: $primary;
     }
 }   
+
+//MEDIA QUERIES
+@media(max-width: 700px) {
+    .list {
+        margin-top: 1rem;   
+        li {
+            h3 {
+                font-size: calc(1rem + 0.5vw);
+            }
+            h4 {
+                font-size: calc(0.8rem + 0.5vw);
+            }
+        }
+        button {
+            font-size: calc(0.8rem + 0.5vw);
+        }
+    }
+}

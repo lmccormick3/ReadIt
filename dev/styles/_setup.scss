@@ -8,5 +8,16 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
-    grid-gap: 1%;
+    grid-gap: 1rem;
+}
+
+//MEDIA QUERIES
+@media(max-width: 700px) {
+    .content {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        grid-gap: 1rem;
+        grid-auto-flow: dense;
+    }
 }

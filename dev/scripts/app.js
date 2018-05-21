@@ -6,7 +6,7 @@ import Search from './Search';
 import BookToRead from './BookToRead';
 import CompletedBooks from './CompletedBooks';
 import Header from './Header';
-
+import Footer from './Footer';
 
 const config = {
   apiKey: "AIzaSyC6Ml-m9yk_1w3DidR8RXz2jtGmtYHxQBI",
@@ -31,14 +31,17 @@ class App extends React.Component {
       addedBooks: [],
       completedBooks: []
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addBookToRead = this.addBookToRead.bind(this);
     this.removeBookToRead = this.removeBookToRead.bind(this);
     this.completeBookToRead = this.completeBookToRead.bind(this);
   }
+
   componentDidMount() {
     const dbRef = firebase.database().ref('booksToRead');
+
     dbRef.on('value',(snapshot) => {
       console.log(snapshot.val());
       const data = snapshot.val();
@@ -66,26 +69,27 @@ class App extends React.Component {
       })
     });
   }
+
   handleChange(e) {
     this.setState({
       title: e.target.value
     })
   }
+
   handleSubmit(e) {
     e.preventDefault();
-    console.log('submitted!');
     axios.get('https://www.googleapis.com/books/v1/volumes?', {
       params: {
         q: this.state.title,
+        maxResults: 9
       }
     })
       .then((res) => {
-        console.log(res);
         this.setState({
           searchResults: res.data.items,
         })
       });
-  }
+    }
 
   addBookToRead(title, author, completed) {
     const bookToRead = {
@@ -97,7 +101,7 @@ class App extends React.Component {
     const bookToReadArray = Array.from(this.state.bookToRead);
     const dbRef = firebase.database().ref('booksToRead');
     const key = dbRef.push(bookToRead).key;
-    
+
     bookToRead.key = key; 
     bookToReadArray.push(bookToRead)
 
@@ -107,12 +111,10 @@ class App extends React.Component {
   }
 
   removeBookToRead(keyToRemove) {
-    console.log(keyToRemove)
     firebase.database().ref(`booksToRead/${keyToRemove}`).remove();
   }
 
   completeBookToRead(keyToUpdate) {
-    console.log(keyToUpdate);
     firebase.database().ref(`booksToRead/${keyToUpdate}`)
       .update({
         completed: true
@@ -121,10 +123,29 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div> 
         <Header />
         <div className="wrapper">
           <div className="content">
+            <div className="searchResults">
+              <div className="searchField">
+                <form action="" onSubmit={this.handleSubmit}>
+                  <input type="text" name="title" onChange={this.handleChange} placeholder="Book Title" value={this.state.title} className="input"/>
+                  <input type="submit" onSubmit={this.handleSubmit} value="Search Books" className="submit"/>
+                </form>
+                </div>
+              <div className="results">
+                {this.state.searchResults.map((book) => {
+                  return (
+                    <div className="result">
+                      <h2>{book.volumeInfo.title}</h2>
+                      <p>{book.volumeInfo.authors}</p>
+                      <button className="addBtn" onClick={() => this.addBookToRead(book.volumeInfo.title, book.volumeInfo.authors)}>Add To List</button>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
             <div className="list">
             <div className="toRead">
               <h2>Books To Read:</h2>
@@ -142,7 +163,7 @@ class App extends React.Component {
               </ul>
             </div>
             <div className="finishedBooks">
-              <h2>Books I Have Read:</h2>
+              <h2>Finished:</h2>
               <ul>
                 {this.state.completedBooks.map((book) => {
                   return( <CompletedBooks
@@ -156,27 +177,9 @@ class App extends React.Component {
               </ul>
             </div>
           </div>
-          <div className="searchResults">
-            <div className="searchField">
-              <form action="" onSubmit={this.handleSubmit}>
-                <input type="text" name="title" onChange={this.handleChange} placeholder="Book Title" value={this.state.title} className="input"/>
-                <input type="submit" onSubmit={this.handleSubmit} value="Search Books" className="submit"/>
-              </form>
-            </div>
-            <div className="results">
-              {this.state.searchResults.map((book) => {
-                return (
-                  <div className="result">
-                    <h2>{book.volumeInfo.title}</h2>
-                    <p>{book.volumeInfo.authors}</p>
-                    <button className="addBtn" onClick={() => this.addBookToRead(book.volumeInfo.title, book.volumeInfo.authors)}>Add To List</button>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
         </div>
       </div> 
+      <Footer />
     </div>//main container
     )
   }

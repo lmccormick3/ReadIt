@@ -1,24 +1,22 @@
 .searchResults {
     background-color: $white;
-    display: flex;
-    flex-direction: column;
     padding: 1rem;
     margin-top: 14rem;
-
+    display: flex;
+    flex-direction: column;
     .results {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 2%;
+        grid-gap: 1rem 2%;
         align-content: center;
         .result {
+            text-align: center;
+            color: $accent;
+            background: $primary;
+            padding: 1rem;
             display: flex;
             flex-direction: column;
-            padding: 1rem;
-
-            background: $primary;
-            color: $accent;
             align-items: center;
-            text-align: center;
             h2 {
                 font-family: 'Special Elite', serif;
                 text-transform: uppercase;
@@ -36,38 +34,82 @@
                 transition: all ease 0.5s;
             }
             button:hover {
-                background: $secondary;
                 color: $accent;
+                background: $primary;
             }
-        
         }
     }
 }
 
 .searchField {
-    // width: 100%;
+    margin-bottom: 1rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 1rem;
-    input.input,
-    input.submit {
-        font-family: 'Special Elite', serif;
-        font-size: calc(0.5rem + 1vw);
-        padding: 0.5rem;
+    form {
+        width: 100%;
+        input.input,
+        input.submit {
+            font-family: 'Special Elite', serif;
+            font-size: calc(0.5rem + 1vw);
+            padding: 0.5rem;
+        }
+        input.input {
+            border: none;
+            width: 65%;
+        } 
+        input.submit {
+            color: $accent;
+            background-color: $secondary;
+            width: 35%;
+            border: none;
+            transition: all 0.5s ease;
+        }
+        input.submit:hover {
+            color: $primary;
+            background-color: $accent;
+        }
     }
-    input.input {
-        border: none;
-    } 
-    input.submit {
-        background-color: $secondary;
-        color: $accent;
-        border: none;
-        transition: all 0.5s ease;
+}
+
+//MEDIA QUERIES
+@media(max-width: 900px) {
+    .searchResults {
+        .results {
+            grid-template-columns: 1fr 1fr;
+        }
     }
-    input.submit:hover {
-        background-color: $accent;
-        color: $primary;
+}
+
+@media(max-width: 700px) {
+    .searchResults {
+        .results {
+            grid-template-columns: 1fr 1fr 1fr;
+            .result {
+                p {
+                    font-size: calc(1rem + 0.5vw);
+                }
+            }
+        }
+    }
+    .searchField {     
+        margin-bottom: 1rem;
+        form {
+            input.input,
+            input.submit {
+                font-family: 'Special Elite', serif;
+                font-size: calc(0.8rem + 1vw);
+                padding: 0.5rem;
+            }
+        }
+    }
+}
+
+@media(max-width: 450px) {
+    .searchResults {
+        .results {
+            grid-template-columns: 1fr 1fr;
+        }
     }
 }
 

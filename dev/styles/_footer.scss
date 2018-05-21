@@ -1,0 +1,40 @@
+footer {
+    margin: 2rem auto;
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+                    color: $white; 
+
+        a {
+            text-decoration: none;
+            color: $white; 
+            transition: all 0.5s ease;
+        }
+        a:hover {
+            color: $accent;
+        }
+    }
+    .copyright {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        p {
+           margin: 0 auto;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+            display: flex;
+            li {
+                margin-right: 10%;
+                a {
+                    font-size: 2rem;
+                    color: $white;
+                }
+            }
+        }
+    }
+}
