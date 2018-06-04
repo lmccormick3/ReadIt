@@ -180,7 +180,8 @@ class App extends React.Component {
         </div>
       </div> 
       <Footer />
-    </div>//main container
+    </div>
+    //main container
     )
   }
 }
